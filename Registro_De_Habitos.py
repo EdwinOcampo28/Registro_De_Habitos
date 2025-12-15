@@ -18,13 +18,25 @@ BOLD = "\033[1m"
 USUARIO = None
 
 HABITOS = [
-    "Despertar temprano / Estiramientos",
+    "Despertar temprano",
+    "Hacer la cama",
+    "Higiene personal",
+    "Desayuno saludable",
+    "Estiramientos",
+    "Beber agua",
     "Ejercicio ligero",
+    "Meditación",
+    "Lectura diaria",
     "Estudio / Trabajo productivo",
+    "Pausas activas",
+    "Almuerzo balanceado",
+    "Siesta corta",
+    "Hidratación continua",
     "Ocio digital controlado",
     "No redes después de 8 p.m.",
     "Rutina relajante",
     "Dormir antes de las 11 p.m.",
+    "Evitar comida chatarra",
     "Registro de gastos",
     "Reflexión diaria"
 ]
@@ -74,7 +86,7 @@ def alarmas_reales():
     if hora < 8:
         print(CYAN + "💧 Agua + estiramientos. Buen inicio." + RESET)
     elif hora < 12:
-        print(YELLOW + "📚 Enfoque productivo." + RESET)
+        print(GREEN + "📝 Registro de gastos / Reflexión diaria" + RESET)
     elif hora < 18:
         print(GREEN + "🏃 Momento ideal para moverte." + RESET)
     elif hora < 20:
@@ -102,6 +114,16 @@ def registrar_dia():
     print("╠══════════════════════════════════════╣")
     print("║      Responda con 1 (Sí) o 0 (No)    ║")
     print("╚══════════════════════════════════════╝" + RESET)
+
+    # ==== RECORDATORIOS ANTES DE REGISTRAR ====
+    print(GREEN + BOLD + "\n💡 RECORDATORIOS DE HÁBITOS" + RESET)
+    print(YELLOW + "💧 Beber agua durante el día" + RESET)
+    print(YELLOW + "📝 Registro de gastos / Reflexión diaria" + RESET)
+    print(YELLOW + "🧘 Rutina relajante antes de dormir" + RESET)
+    print(YELLOW + "🛌 Dormir antes de las 11 p.m." + RESET)
+    pause()
+    clear()
+    # ==========================================
 
     datos[hoy] = {"habitos": {}, "reflexion": {}}
 
@@ -346,7 +368,7 @@ def exportar_reporte():
 # ============================================================
 RECORDATORIOS = [
     {"hora": 7, "mensaje": "💧 Bebe agua"},
-    {"hora": 9, "mensaje": "📚 Estudia o trabaja de manera productiva"},
+    {"hora": 12, "mensaje":  "📝 Registro de gastos / Reflexión diaria"},
     {"hora": 18, "mensaje": "🏃 Haz ejercicio o muévete un poco"},
 ]
 # ============================================================
@@ -363,7 +385,7 @@ def alarmas_y_recordatorios():
     if hora < 8:
         print(CYAN + "💧 Agua + estiramientos. Buen inicio." + RESET)
     elif hora < 12:
-        print(YELLOW + "📚 Enfoque productivo." + RESET)
+        print(GREEN + "📝 Registro de gastos / Reflexión diaria" + RESET)
     elif hora < 18:
         print(GREEN + "🏃 Momento ideal para moverte." + RESET)
     elif hora < 20:
@@ -373,10 +395,11 @@ def alarmas_y_recordatorios():
 
     # Recordatorios por hábito
     print(GREEN + BOLD + "\n💡 RECORDATORIOS DE HÁBITOS" + RESET)
-    print(YELLOW + "💧 Beber agua" + RESET)
-    print(YELLOW + "📚 Estudiar / Trabajo productivo" + RESET)
-    print(YELLOW + "🧘 Rutina relajante antes de dormir" + RESET)
-    print(YELLOW + "🛌 Dormir antes de las 11 p.m." + RESET)
+    print(CYAN + "💧 Beber agua" + RESET)
+    print(CYAN + "📝 Registro de gastos" + RESET)
+    print(CYAN + "🌱 Reflexión diaria" + RESET)
+    print(CYAN + "🧘 Rutina relajante antes de dormir" + RESET)
+    print(CYAN + "🛌 Dormir antes de las 11 p.m." + RESET)
 
     pause()
 
@@ -394,9 +417,9 @@ def main():
         print("╚══════════════════════════════╝" + RESET)
         print(CYAN + "1. Registrar hábitos de hoy")
         print("2. Vista semanal 📅")
-        print("3. Estadísticas + gráfico 📊")
-        print("4. Rachas + gráfico 📊")
-        print("5. alarmas_y_recordatorios")
+        print("3. Estadísticas 📊")
+        print("4. Rachas 🔥")
+        print("5. alarmas_y_recordatorios ⏰")
         print("6. Exportar reporte 🧾")
         print("7. ❌ Salir" + RESET)
         print(GREEN + "================================" + RESET)

@@ -1,0 +1,30 @@
+REGISTRO DE HÁBITOS — VERSIÓN 1.0 WEB + TERMINAL
+================================================
+
+CONTENIDO
+- web/index.html: aplicación web local.
+- web/css/styles.css: estilos modulares.
+- web/js/app.js: funciones de la web.
+- terminal/Registro_De_Habitos.py: aplicación de terminal Python.
+- INICIAR_WEB.bat: abre la web con el navegador predeterminado.
+- INICIAR_TERMINAL.bat: inicia la versión de terminal.
+- data/terminal/: datos JSON de terminal por usuario.
+- reportes/: reportes TXT exportados desde la terminal.
+
+CÓMO USAR
+1. Extrae todo el ZIP en una carpeta.
+2. Para la web, haz doble clic en INICIAR_WEB.bat. No requiere servidor ni internet.
+3. Para la terminal, haz doble clic en INICIAR_TERMINAL.bat. Requiere Python 3 instalado.
+
+FUNCIONES
+- 21 hábitos originales.
+- Registro diario y reflexión.
+- Vista de últimos siete días.
+- Estadísticas y rachas consecutivas.
+- Recordatorios orientativos.
+- Exportación de reporte semanal TXT.
+
+IMPORTANTE SOBRE LOS DATOS
+La web guarda sus registros en localStorage del navegador utilizado. La terminal guarda sus registros en archivos JSON dentro de data/terminal. En esta primera versión, ambos modos comparten carpeta del proyecto pero NO sincronizan automáticamente los registros entre sí. No borres los datos del navegador ni la carpeta data/terminal si quieres conservar tus registros.
+La web debe abrirse desde el mismo navegador y perfil para mantener acceso a sus datos.
+Los recordatorios son sugerencias dentro de la aplicación; no crean alarmas del sistema operativo.

@@ -1,30 +1,53 @@
-REGISTRO DE HÁBITOS — VERSIÓN 1.0 WEB + TERMINAL
+REGISTRO DE HÁBITOS — EDICIÓN RETRO GOLD WEB + TERMINAL
 ================================================
 
 CONTENIDO
-- web/index.html: aplicación web local.
-- web/css/styles.css: estilos modulares.
-- web/js/app.js: funciones de la web.
+- web/index.html: interfaz web local.
+- web/css/theme.css: paleta natural de bajo contraste y modo claro/oscuro.
+- web/css/layout.css: estructura y diseño adaptable.
+- web/css/components.css: tarjetas, controles, calendario y avisos.
+- web/css/retro-gold.css: piel visual Retro Gold con botones 3D, biseles dorados, sombras profundas y apariencia oscura uniforme.
+- web/js/data.js: hábitos originales y categorías.
+- web/js/storage.js: persistencia por perfil y lectura compatible con versiones web anteriores.
+- web/js/auth.js: creación de perfiles e inicio/cierre de sesión local.
+- web/js/analytics.js: estadísticas, calendario y rachas.
+- web/js/app.js: navegación, formularios, avisos y exportaciones.
 - terminal/Registro_De_Habitos.py: aplicación de terminal Python.
-- INICIAR_WEB.bat: abre la web con el navegador predeterminado.
+- INICIAR_WEB.bat: abre la web sin servidor.
 - INICIAR_TERMINAL.bat: inicia la versión de terminal.
-- data/terminal/: datos JSON de terminal por usuario.
-- reportes/: reportes TXT exportados desde la terminal.
+- data/terminal/: archivos de datos de terminal por usuario.
+- reportes/: reportes TXT y respaldos JSON de terminal.
 
 CÓMO USAR
-1. Extrae todo el ZIP en una carpeta.
-2. Para la web, haz doble clic en INICIAR_WEB.bat. No requiere servidor ni internet.
-3. Para la terminal, haz doble clic en INICIAR_TERMINAL.bat. Requiere Python 3 instalado.
+1. Extrae el ZIP completo en una carpeta.
+2. Abre INICIAR_WEB.bat para usar la web. No requiere internet ni servidor.
+3. Abre INICIAR_TERMINAL.bat para usar la terminal. Requiere Python 3.
 
-FUNCIONES
-- 21 hábitos originales.
-- Registro diario y reflexión.
-- Vista de últimos siete días.
-- Estadísticas y rachas consecutivas.
-- Recordatorios orientativos.
-- Exportación de reporte semanal TXT.
+MEJORAS DE ESTA EDICIÓN RETRO GOLD
+- Animaciones de entrada suaves para tarjetas y paneles.
+- Mascota animada con movimiento flotante sutil.
+- Microinteracciones en botones, navegación, hábitos, calendario y controles.
+- Brillo discreto en el panel principal y en las barras de progreso.
+- Transiciones suaves entre vistas, diálogos y cambios de tema.
+- Respeta la preferencia del sistema para reducir movimiento y evitar mareos.
+- Interfaz adaptable con una sola apariencia oscura Retro Gold, de tonos oliva, carbón y dorado.
+- Botones y controles con relieve retro, bordes metálicos, sombras de apoyo y respuesta al pulsar.
+- Paneles biselados con brillos cálidos, tarjetas profundas y navegación dorada activa.
+- Se oculta el selector de temas para mantener una identidad visual uniforme.
+- Navegación por panel, registro, calendario, estadísticas, reflexión, rutina y datos.
+- Organización de los 21 hábitos originales en categorías sin eliminar hábitos.
+- Búsqueda y filtro por categoría.
+- Calendario de cumplimiento, comparativa de últimos siete días y rachas.
+- Centro de avisos internos, meta diaria configurable y perfil personalizable.
+- Inicio de sesión y creación de perfiles separados, cada uno con sus propios registros.
+- Mascota ilustrada original para hábitos, avatares y una sola paleta natural con modo claro suave y oscuro suave.
+- Exportación de respaldo JSON e importación/combinar respaldos en la web.
+- Exportación TXT y respaldo JSON desde la terminal.
+- Racha actual considera que la última ejecución puede haber sido ayer.
+- Archivos CSS y JavaScript separados por responsabilidad.
 
-IMPORTANTE SOBRE LOS DATOS
-La web guarda sus registros en localStorage del navegador utilizado. La terminal guarda sus registros en archivos JSON dentro de data/terminal. En esta primera versión, ambos modos comparten carpeta del proyecto pero NO sincronizan automáticamente los registros entre sí. No borres los datos del navegador ni la carpeta data/terminal si quieres conservar tus registros.
-La web debe abrirse desde el mismo navegador y perfil para mantener acceso a sus datos.
-Los recordatorios son sugerencias dentro de la aplicación; no crean alarmas del sistema operativo.
+DATOS Y PRIVACIDAD
+La web guarda los perfiles y registros en el navegador; la terminal guarda archivos JSON en data/terminal y separa los datos por nombre de usuario. Las dos modalidades no se sincronizan automáticamente. El acceso web es una protección básica para uso personal, no autenticación segura para información sensible. Las contraseñas no están cifradas en esta versión. Puedes cambiar tu contraseña desde Perfil y apariencia. Los recordatorios son avisos internos, no alarmas del sistema. Exporta respaldos con frecuencia. Si limpias los datos del navegador o eliminas los JSON, podrías perder el historial que no hayas respaldado.
+
+COMPATIBILIDAD
+Al crear el primer perfil, la web intenta recuperar los registros guardados en las claves de las versiones web anteriores. Mantén intactas tus versiones anteriores como respaldo hasta verificar tus datos. Mantén intacta tu versión anterior como respaldo hasta verificar tus datos.

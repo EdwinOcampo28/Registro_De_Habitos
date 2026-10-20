@@ -42,12 +42,23 @@ def pct_habit(data,h):
     days=list(data)
     return round(sum(int(data[d].get('habitos',{}).get(h,0))==1 for d in days)*100/len(days)) if days else 0
 def streaks(data,h):
-    successful=sorted(date.fromisoformat(d) for d in data if int(data[d].get('habitos',{}).get(h,0))==1)
+    successful=[]
+    for key, record in data.items():
+        try:
+            parsed=date.fromisoformat(key)
+        except (TypeError, ValueError):
+            continue
+        if int(record.get('habitos',{}).get(h,0))==1:
+            successful.append(parsed)
+    successful.sort()
     best=run=0; prev=None
     for d in successful:
         run=run+1 if prev and d-prev==timedelta(days=1) else 1
         best=max(best,run); prev=d
     current=0; cursor=date.today()
+    # La racha sigue vigente si el hábito se cumplió hoy o ayer.
+    if int(data.get(str(cursor),{}).get('habitos',{}).get(h,0))!=1:
+        cursor-=timedelta(days=1)
     while str(cursor) in data and int(data[str(cursor)].get('habitos',{}).get(h,0))==1:
         current+=1; cursor-=timedelta(days=1)
     return best,current
@@ -137,6 +148,15 @@ def export_report():
     out=REPORT_DIR/f'reporte_habitos_{USER}_{date.today()}.txt'; out.write_text('\n'.join(lines),encoding='utf-8')
     print(f'Reporte creado: {out}'); pause()
 
+def backup_json():
+    data=load(); REPORT_DIR.mkdir(parents=True,exist_ok=True)
+    out=REPORT_DIR/f"respaldo_habitos_{USER}_{date.today()}.json"
+    out.write_text(json.dumps({'user':USER,'records':data},ensure_ascii=False,indent=2),encoding='utf-8')
+    clear(); box('RESPALDO DE DATOS')
+    print(f'\nRespaldo JSON creado correctamente:\n{out}\n')
+    print('Guarda una copia de este archivo en un lugar seguro.')
+    pause()
+
 def main():
     global USER, FILE
     DATA_DIR.mkdir(parents=True,exist_ok=True); clear(); box('REGISTRO DE HÁBITOS · TERMINAL')
@@ -145,14 +165,17 @@ def main():
     FILE=DATA_DIR/f'habitos_{USER}.json'
     while True:
         clear(); box('REGISTRO DE HÁBITOS · MENÚ PRINCIPAL')
-        print(f' Usuario: {USER}\n Archivo local: data/terminal/habitos_{USER}.json\n')
+        print(f' Usuario: {USER}\n Archivo de datos: data/terminal/habitos_{USER}.json\n')
+        print('  SEGUIMIENTO')
         print('  1. Registrar o actualizar hábitos de hoy')
-        print('  2. Vista semanal')
+        print('  2. Vista semanal por hábito')
         print('  3. Estadísticas de cumplimiento')
         print('  4. Rachas por hábito')
+        print('  HERRAMIENTAS')
         print('  5. Recordatorios y rutina')
         print('  6. Exportar reporte semanal')
-        print('  7. Salir')
+        print('  7. Crear respaldo JSON')
+        print('  8. Salir')
         choice=input('\nSelecciona una opción: ').strip()
         if choice=='1': register()
         elif choice=='2': weekly()
@@ -160,7 +183,8 @@ def main():
         elif choice=='4': streak_report()
         elif choice=='5': reminders()
         elif choice=='6': export_report()
-        elif choice=='7': print('¡Gracias! Tus registros permanecen guardados.'); break
+        elif choice=='7': backup_json()
+        elif choice=='8': print('¡Gracias! Tus registros permanecen guardados.'); break
         else: print('Opción no válida.'); pause()
 
 if __name__=='__main__':

@@ -1,6 +1,0 @@
-(function(){'use strict';const S=window.HabitStorage,$=id=>document.getElementById(id);if(S.active){$('authScreen').classList.add('hidden');document.body.classList.remove('auth-required');return;}$('authScreen').classList.remove('hidden');document.body.classList.add('auth-required');
- function tab(name){document.querySelectorAll('[data-auth-tab]').forEach(b=>b.classList.toggle('active',b.dataset.authTab===name));$('loginForm').classList.toggle('hidden',name!=='login');$('registerForm').classList.toggle('hidden',name!=='register');$('authMessage').textContent='';$('authTitle').textContent=name==='login'?'Qué bueno verte.':'Crea tu propio espacio.'}
- document.querySelectorAll('[data-auth-tab]').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.authTab)));
- $('loginForm').addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget,r=S.login(f.elements.username.value,f.elements.password.value);if(r.ok){location.reload();return}$('authMessage').textContent=r.message});
- $('registerForm').addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget,r=S.register(f.elements.displayName.value,f.elements.password.value,f.elements.username.value);if(!r.ok){$('authMessage').textContent=r.message;return}location.reload()});
-})();
